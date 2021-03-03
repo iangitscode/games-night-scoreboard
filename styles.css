@@ -1,0 +1,17 @@
+#players {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.player {
+	padding: 25px 50px;
+	border: 2px solid black;
+	border-bottom: 0px;
+}
+
+.player:last-child {
+	border-bottom: 2px solid black;
+}
