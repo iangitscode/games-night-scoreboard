@@ -11,11 +11,14 @@
 	padding: 25px 50px;
 	border: 2px solid black;
 	border-bottom: 0px;
-  font-size: 1.5em;
 }
 
 .player:last-child {
 	border-bottom: 2px solid black;
+}
+
+.player-score {
+  font-size: 1.5em;
 }
 
 .main {

@@ -14,7 +14,6 @@ data = data.split('\n').map((line) => {
 		return isNaN(parseFloat(num)) ? num : parseFloat(num);
 	});
 });
-console.log(data);
 data = data.slice(1, data.length - 1);
 
 function getScore(player, rounds) {
@@ -26,10 +25,11 @@ function getScore(player, rounds) {
 	return count;
 }
 
+// @returns [[name, total score, last earned score]]
 function calculateScores(rounds) {
 	let output = [];
 	for (let i = 0; i < NUM_PLAYERS; ++i) {
-		output.push([players[i], getScore(i, rounds)])
+		output.push([players[i], getScore(i, rounds), data[rounds][i]])
 	}
 	return output.sort((a,b) => b[1] - a[1]);
 }
@@ -38,7 +38,8 @@ function populateScores(rounds) {
 	const playerBox = document.getElementById("players");
 	const scores = calculateScores(rounds);
 	for (let i in scores) {
-		playerBox.children[i].innerText = scores[i][0] + ": " + scores[i][1];		
+		playerBox.children[i].children[0].innerText = scores[i][0] + ": " + scores[i][1];
+		playerBox.children[i].children[1].innerText = rounds > 0 ? " ( +" + scores[i][2] + ")" : ""; 
 	}
 }
 
@@ -50,10 +51,8 @@ function showStage(stage) {
 	try {
 		contextBox.innerHTML = "";
 		let context = data[stage][NUM_PLAYERS + 2];
-		console.log(context)
 		// Snip pic gives .PNG
 		if (context.includes(".PNG")) {
-			console.log("hello");
 			contextBox.innerHTML = `<img src="assets/` + context + `">`;
 		} else {
 			contextBox.innerHTML = context;
@@ -67,7 +66,13 @@ let playerBox = document.createElement("div");
 playerBox.id = "players";
 for (let i in players) {
 	let pBox = document.createElement("div");
+	let psBox = document.createElement("span");
+	let addBox = document.createElement("span");
 	pBox.classList.add("player");
+	psBox.classList.add("player-score");
+	addBox.classList.add("add");
+	pBox.appendChild(psBox);
+	pBox.appendChild(addBox);
 	playerBox.appendChild(pBox);
 }
 document.body.appendChild(playerBox);
