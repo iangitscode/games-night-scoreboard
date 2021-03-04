@@ -9,17 +9,16 @@ fetch("game.csv")
 	data = csv.split('\n');
 	players = data.shift();
 
-	players	= players.split(',');
+	players	= players.split(',')
+		.filter(entry => != "");
 	num_players = players.length;
 
-	data = data
-	// Why does Excel add random empty lines durr
-	.filter(entry => entry != "")
-	.map(line => {
-		return line.split(",").map(num => {
-			return isNaN(parseFloat(num)) ? num : parseFloat(num);
+	data = data.filter(entry => entry != "")
+		.map(line => {
+			return line.split(",").map(num => {
+				return isNaN(parseFloat(num)) ? num : parseFloat(num);
+			});
 		});
-	});
 
 	// Create initial boxes
 	let playerBox = document.createElement("div");
