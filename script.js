@@ -10,7 +10,7 @@ fetch("game.csv")
 	players = data.shift();
 
 	players	= players.split(',')
-		.filter(entry => != "");
+		.filter(entry => entry != "");
 	num_players = players.length;
 
 	data = data.filter(entry => entry != "")
