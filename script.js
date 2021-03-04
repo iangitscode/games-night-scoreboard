@@ -1,6 +1,7 @@
 // Load data from csv
 let players;
 let data;
+let num_players;
 
 fetch("game.csv")
 .then(resp => resp.text())
@@ -9,7 +10,7 @@ fetch("game.csv")
 	players = data.shift();
 
 	players	= players.split(',');
-	const NUM_PLAYERS = players.length;
+	num_players = players.length;
 
 	data = data.map(line => {
 		return line.split(",").map(num => {
@@ -60,7 +61,7 @@ function getScore(player, rounds) {
 // @returns [[name, total score, last earned score]]
 function calculateScores(rounds) {
 	let output = [];
-	for (let i = 0; i < NUM_PLAYERS; ++i) {
+	for (let i = 0; i < num_players; ++i) {
 		output.push([players[i], getScore(i, rounds), data[rounds][i]])
 	}
 	return output.sort((a,b) => b[1] - a[1]);
@@ -76,13 +77,13 @@ function populateScores(rounds) {
 }
 
 function showStage(stage) {
-	document.getElementsByClassName("title")[0].innerText = data[stage][NUM_PLAYERS];
-	document.getElementsByClassName("description")[0].innerText = data[stage][NUM_PLAYERS + 1];
+	document.getElementsByClassName("title")[0].innerText = data[stage][num_players];
+	document.getElementsByClassName("description")[0].innerText = data[stage][num_players + 1];
 	// Shit code because speed matters
 	const contextBox = document.getElementsByClassName("context")[0];
 	try {
 		contextBox.innerHTML = "";
-		let context = data[stage][NUM_PLAYERS + 2];
+		let context = data[stage][num_players + 2];
 		// Snip pic gives .PNG
 		if (context.includes(".PNG")) {
 			contextBox.innerHTML = `<img src="assets/` + context + `">`;
