@@ -17,7 +17,6 @@ fetch("game.csv")
 			return isNaN(parseFloat(num)) ? num : parseFloat(num);
 		});
 	});
-	data = data.slice(1, data.length - 1);
 
 	// Create initial boxes
 	let playerBox = document.createElement("div");
