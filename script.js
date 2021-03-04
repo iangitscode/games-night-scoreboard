@@ -12,7 +12,10 @@ fetch("game.csv")
 	players	= players.split(',');
 	num_players = players.length;
 
-	data = data.map(line => {
+	data = data
+	// Why does Excel add random empty lines durr
+	.filter(entry => entry != "")
+	.map(line => {
 		return line.split(",").map(num => {
 			return isNaN(parseFloat(num)) ? num : parseFloat(num);
 		});
