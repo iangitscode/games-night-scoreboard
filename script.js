@@ -11,7 +11,7 @@ fetch("game.csv")
 	players	= players.split(',');
 	const NUM_PLAYERS = players.length;
 
-	data = data.split('\n').map(line => {
+	data = data.map(line => {
 		return line.split(",").map(num => {
 			return isNaN(parseFloat(num)) ? num : parseFloat(num);
 		});
