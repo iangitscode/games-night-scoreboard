@@ -1,20 +1,52 @@
 // Load data from csv
-let players = "A,B,C,D,E";
-let data = `
-0,0,0,0,0,Start,"Everyone is equal.",Capture.PNG
-1,2,3,4,5,First Game,"But some are more equal than others.",here is some context
-10,50,20,40,30,Second Game, another desc
-`;
+let players;
+let data;
 
-players	= players.split(',');
-const NUM_PLAYERS = players.length;
+fetch("game.csv")
+.then(resp => resp.text())
+.then(csv => {
+	data = csv.split('\n');
+	players = data.shift();
 
-data = data.split('\n').map((line) => {
-	return line.split(",").map((num) => {
-		return isNaN(parseFloat(num)) ? num : parseFloat(num);
+	players	= players.split(',');
+	const NUM_PLAYERS = players.length;
+
+	data = data.split('\n').map(line => {
+		return line.split(",").map(num => {
+			return isNaN(parseFloat(num)) ? num : parseFloat(num);
+		});
 	});
+	data = data.slice(1, data.length - 1);
+
+	// Create initial boxes
+	let playerBox = document.createElement("div");
+	playerBox.id = "players";
+	for (let i in players) {
+		let pBox = document.createElement("div");
+		let psBox = document.createElement("span");
+		let addBox = document.createElement("span");
+		pBox.classList.add("player");
+		psBox.classList.add("player-score");
+		addBox.classList.add("add");
+		pBox.appendChild(psBox);
+		pBox.appendChild(addBox);
+		playerBox.appendChild(pBox);
+	}
+	document.body.appendChild(playerBox);
+
+	// Register event listeners
+	document.getElementsByClassName("button")[0].addEventListener("click", () => {
+		if (currStage != 0) showStage(--currStage);
+	});
+
+	document.getElementsByClassName("button")[1].addEventListener("click", () => {
+		if (currStage < data.length - 1) showStage(++currStage);
+	});
+
+	// Initialize with the current scores
+	let currStage = data.length - 1;
+	showStage(currStage);
 });
-data = data.slice(1, data.length - 1);
 
 function getScore(player, rounds) {
 	let count = 0;
@@ -60,32 +92,3 @@ function showStage(stage) {
 	} catch (e) {}
 	populateScores(stage);
 }
-
-// Create initial boxes
-let playerBox = document.createElement("div");
-playerBox.id = "players";
-for (let i in players) {
-	let pBox = document.createElement("div");
-	let psBox = document.createElement("span");
-	let addBox = document.createElement("span");
-	pBox.classList.add("player");
-	psBox.classList.add("player-score");
-	addBox.classList.add("add");
-	pBox.appendChild(psBox);
-	pBox.appendChild(addBox);
-	playerBox.appendChild(pBox);
-}
-document.body.appendChild(playerBox);
-
-// Register event listeners
-document.getElementsByClassName("button")[0].addEventListener("click", () => {
-	if (currStage != 0) showStage(--currStage);
-});
-
-document.getElementsByClassName("button")[1].addEventListener("click", () => {
-	if (currStage < data.length - 1) showStage(++currStage);
-});
-
-// Initialize with the current scores
-let currStage = data.length - 1;
-showStage(currStage);
