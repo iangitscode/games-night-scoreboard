@@ -11,6 +11,7 @@
 	padding: 25px 50px;
 	border: 2px solid black;
 	border-bottom: 0px;
+	min-width: 180px;
 }
 
 .player:last-child {
