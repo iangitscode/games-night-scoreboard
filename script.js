@@ -73,7 +73,7 @@ function populateScores(rounds) {
 	const scores = calculateScores(rounds);
 	for (let i in scores) {
 		playerBox.children[i].children[0].innerText = scores[i][0] + ": " + scores[i][1];
-		playerBox.children[i].children[1].innerText = rounds > 0 ? " ( +" + scores[i][2] + ")" : ""; 
+		playerBox.children[i].children[1].innerText = rounds > 0 ? " ("+ (scores[i][2] > 0 ? "+" : "") + scores[i][2] + ")" : "";
 	}
 }
 
