@@ -87,7 +87,7 @@ function showStage(stage) {
 		let context = data[stage][num_players + 2];
 		if (context === "") {
 			contextBox.innerHTML = `<img src="https://picsum.photos/400/600"/>`
-		} else if (context.includes(".PNG")) {
+		} else if (context.includes(".PNG") || context.includes(".png")) {
 			contextBox.innerHTML = `<img src="assets/` + context + `">`;
 		} else {
 			contextBox.innerHTML = context;
