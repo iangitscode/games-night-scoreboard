@@ -1,0 +1,80 @@
+<html>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      font-family: fantasy;
+      font-size: 35px;
+    }
+    .text {
+      z-index: 2; 
+      position: relative;
+      user-select: none;
+      margin: 150px 20px;
+    }
+    .circle {
+      z-index: 1;
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      background-color: white;
+      transform: translate(-50%, -50%);
+      box-shadow: inset 0px 0px 15px 15px #d1d1d1;
+      cursor: none;
+    }
+    .header {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px;
+      background-color: white;
+      z-index: 3;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .links {
+      display: flex;
+    }
+    .link {
+      text-decoration: none;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+    }
+    .link:hover {
+      background-color: #d6d4d4;
+    }
+  </style>
+  <body>
+    <div class="header">
+      Book 3: Bomb 3
+      <div class="links">
+        <a class="link" href="2.html">&#8592;</a>
+      </div>
+    </div>
+    <ol>
+      <li class="text">
+        The third guess is "LINKS"
+      </li>
+      <li class="text">
+        The first guess resulted in "Grey/Grey/Grey/Grey/Yellow"
+      </li>
+      <li class="text">
+        The code contains no repeated letters
+      </li>
+    </ol>
+    <div id="circle" class="circle"></div>
+  </body>
+  <script>
+    console.log('%c HEY! I see you, get outta here >:(', 'color: red; font-size: 45px;');
+    const c = document.getElementById("circle");
+    addEventListener('mousemove', (event) => {
+      c.style.top = event.clientY;
+      c.style.left = event.clientX;
+    });
+  </script>
+</html>

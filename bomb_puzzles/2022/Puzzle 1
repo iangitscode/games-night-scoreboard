@@ -1,0 +1,16 @@
+Puzzle 1
+-----------------------
+Book 1
+1) Cut every wire that is a part of a closed cycle 
+2) Book 2, rule 2 should say 2 wires
+3) If two separate rules tell you to cut the same wire, ignore them both.
+
+Book 2
+1) On the left side, add a gold wire between the second and sixth nodes (counting from the top)
+2) If there's exactly one wire left, just cut it lol
+3) Book 1, rule 3 is too hard, let's just scratch that
+
+Book 3
+1) If a red wire's left side is lower than its right side, cut it
+2) Book 2, rule 2 should say do not
+3) Oops the bomb is upside down. Start over!

@@ -1,0 +1,18 @@
+Puzzle 2
+-----------------------
+
+Book 1
+1) The first number and the second number should sum to 17
+2) Book 3 should say 8 instead of 4 everywhere
+3) The code contains an odd number of odd numbers, and an even number of even numbers
+
+Book 2
+1) All books should say 5 instead of 7 everywhere
+2) Reading each digit out should be 6 syllables
+3) If the code is <50000, the code is a perfect cube
+
+Book 3
+1) The code is a 7 digit number
+2) The second number and third number should sum to 14
+3) The last digit is a perfect square
+
